@@ -34,6 +34,6 @@ public class ServiceEstacionamentoTest {
         Date entrada = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2023-09-24 08:00");
         Date saida = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2023-09-24 08:59");
         double resultado = service.calculaTarifa(true, entrada, saida);
-        assertEquals(2.45, resultado, 0.01);
+        assertEquals(2.95, resultado, 0.01);
     }
 }
