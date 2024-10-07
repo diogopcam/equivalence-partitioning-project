@@ -1,5 +1,4 @@
 package org.example;
-
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -42,7 +41,7 @@ public class ServiceEstacionamento {
         }
         // Se a diferença for maior que 12 horas, cobra valor de pernoite
         if(minutos > UMA_HORA ){
-            if(minutos>=12){
+            if(minutos>12*60){
                 return VALOR_PERNOITE;
             }
             // Caso contrário, identifica que passsou de 1 hora e não é pernoite
