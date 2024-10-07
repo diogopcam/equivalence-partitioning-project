@@ -32,6 +32,7 @@ public class ServiceEstacionamento {
         return tarifa;
     }
 
+    
     private double calculaTarifaNormal(Date entrada, Date saida) {
         long minutos = calcularDiferencaEmMinutos(entrada, saida);
 
@@ -39,14 +40,20 @@ public class ServiceEstacionamento {
         if (minutos <= UMA_HORA) {
             return VALOR_FIXO;
         }
+        // Se a diferença for maior que 12 horas, cobra valor de pernoite
+        if(minutos > UMA_HORA ){
+            if(minutos>=12){
+                return VALOR_PERNOITE;
+            }
+            // Caso contrário, identifica que passsou de 1 hora e não é pernoite
+            else{
+                return VALOR_FIXO + 2.50;
+            }
+
+        }
 
         // Calcula o número de horas completas acima de 1 hora
-        long horasExtras = (minutos - UMA_HORA) / UMA_HORA;
-
-        // Verifica se o veículo ficou pernoite
-        if (saida.getHours() >= HORA_ABERTURA) {
-            return VALOR_PERNOITE;
-        }
+        long horasExtras = (minutos - UMA_HORA) / UMA_HORA; 
 
         // Valor fixo + valor adicional por cada hora extra
         return VALOR_FIXO + (horasExtras * VALOR_HORA_EXTRA);
